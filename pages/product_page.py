@@ -3,14 +3,14 @@ from .locators import ProductPageLocators
 
 
 class ProductPage(BasePage):
+    def add_product_in_basket(self):
+        self.find_button_and_click(*ProductPageLocators.ADD_PRODUCT)
+        self.solve_quiz_and_get_code()
+
     def should_be_product_page(self):
         self.add_product_in_basket()
         self.should_be_success_message()
         self.should_be_cost_product()
-
-    def add_product_in_basket(self):
-        self.find_button_and_click(*ProductPageLocators.ADD_PRODUCT)
-        self.solve_quiz_and_get_code()
 
     def should_be_success_message(self):
         product_name_in_alert = self.find_element_and_get_text(*ProductPageLocators.ALERT_SUCCESS)
